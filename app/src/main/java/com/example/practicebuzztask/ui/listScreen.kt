@@ -74,8 +74,16 @@ fun listScreen(navController: NavController){
                     Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(10.dp))
-                Button(onClick = { list.add(listItem(title.value, desc.value))
-                    Toast.makeText(context, "item created: ${title.value} , ${desc.value}", Toast.LENGTH_SHORT).show()}) {
+                Button(onClick = {
+                    list.add(listItem(title.value, desc.value))
+                    title.value = ""
+                    desc.value = ""
+                }, enabled = title.value.isNotBlank()) {  // now atleast title mst be mentioned to add an item
+                    Toast.makeText(
+                        context,
+                        "item created: ${title.value} , ${desc.value}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     Text("Save this item")
                 }
             }
