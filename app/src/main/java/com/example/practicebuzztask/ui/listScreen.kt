@@ -62,16 +62,18 @@ fun listScreen(navController: NavController){
             var desc = remember { mutableStateOf("") }
             val context = LocalContext.current;
 
-            Column(modifier = Modifier.fillMaxWidth()){
-                TextField(
+            Column(modifier = Modifier.fillMaxWidth().padding(10.dp)){
+                OutlinedTextField(
                     value = title.value,
-                    onValueChange = { title.value = it.toString() },
-                    Modifier.fillMaxWidth()
+                    onValueChange = { title.value = it },
+                    label = { Text("Title") },
+                    modifier = Modifier.fillMaxWidth()
                 )
-                TextField(
+                OutlinedTextField(
                     value = desc.value,
-                    onValueChange = { desc.value = it.toString() } ,
-                    Modifier.fillMaxWidth()
+                    onValueChange = { desc.value = it },
+                    label = { Text("Description") },
+                    modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 Button(onClick = {
@@ -96,7 +98,7 @@ fun itemComposable(item: listItem){
     val context = LocalContext.current
     Box(modifier = Modifier
         .padding(10.dp)
-        .border(2.dp, Color.Blue, shape = RoundedCornerShape(10.dp))){
+        .border(2.dp, Color.Cyan, shape = RoundedCornerShape(10.dp))){
 
         Button(onClick = {itemClicked(item,context)}, modifier = Modifier.fillMaxWidth()){
             Text(item.itemName)
